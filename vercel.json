@@ -1,12 +1,47 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "buildCommand": "npm install && npm run build",
+    "buildCommand": "npm ci && npm run build",
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.9.0"
+            "runtime": "vercel-php@0.6.2"
         }
     },
+    "headers": [
+        {
+            "source": "/build/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ],
     "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/css/(.*)",
+            "dest": "/public/css/$1"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
+        },
+        {
+            "src": "/fonts/(.*)",
+            "dest": "/public/fonts/$1"
+        },
+        {
+            "src": "/images/(.*)",
+            "dest": "/public/images/$1"
+        },
+        {
+            "src": "/(MALogo\\.png|favicon\\.ico|robots\\.txt)",
+            "dest": "/public/$1"
+        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
