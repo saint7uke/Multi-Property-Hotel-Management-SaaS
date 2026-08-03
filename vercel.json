@@ -8,37 +8,21 @@
             "runtime": "vercel-php@0.6.2"
         }
     },
-    "routes": [
+    "headers": [
         {
-            "src": "/build/(.*)",
-            "dest": "/build/$1",
-            "headers": {
-                "Cache-Control": "public, max-age=31536000, immutable"
-            }
-        },
+            "source": "/build/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ],
+    "rewrites": [
         {
-            "src": "/css/(.*)",
-            "dest": "/css/$1"
-        },
-        {
-            "src": "/js/(.*)",
-            "dest": "/js/$1"
-        },
-        {
-            "src": "/fonts/(.*)",
-            "dest": "/fonts/$1"
-        },
-        {
-            "src": "/images/(.*)",
-            "dest": "/images/$1"
-        },
-        {
-            "src": "/(MALogo\\.png|favicon\\.ico|robots\\.txt)",
-            "dest": "/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
+            "source": "/(.*)",
+            "destination": "/api/index.php"
         }
     ]
 }
