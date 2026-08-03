@@ -3,7 +3,11 @@
 use Illuminate\Support\Str;
 use Pdo\Mysql;
 
-$databaseUrl = env('DB_URL') ?: env('DATABASE_URL') ?: env('POSTGRES_URL');
+$databaseUrl = env('DB_URL')
+    ?: env('DATABASE_URL')
+    ?: env('POSTGRES_URL')
+    ?: env('DATABASE_POSTGRES_URL')
+    ?: env('DATABASE_POSTGRES_URL_NON_POOLING');
 $defaultConnection = Str::startsWith((string) $databaseUrl, ['postgres://', 'postgresql://'])
     ? 'pgsql'
     : 'sqlite';

@@ -12,7 +12,7 @@ This repository deploys Laravel through a Vercel PHP community runtime and build
 
 ## Required environment variables
 
-Configure these for Production and Preview in the Vercel project settings:
+Configure these for Production and Preview in the Vercel project settings. The application accepts the standard Neon `POSTGRES_URL` and prefixed `DATABASE_POSTGRES_URL` variables in addition to `DATABASE_URL`:
 
 ```dotenv
 APP_NAME="M.A Group of Hotels"
