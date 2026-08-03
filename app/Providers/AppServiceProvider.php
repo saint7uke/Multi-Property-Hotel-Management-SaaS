@@ -2,13 +2,16 @@
 
 namespace App\Providers;
 
+use App\Database\Connectors\NeonPostgresConnector;
 use App\Http\Responses\StaffLogoutResponse;
 use App\Models\Property;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\PostgresConnection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +24,19 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(LogoutResponse::class, StaffLogoutResponse::class);
+
+        DB::extend('pgsql', function (array $config, string $name): PostgresConnection {
+            $connector = new NeonPostgresConnector;
+
+            $connection = $connector->connect($config);
+
+            return new PostgresConnection(
+                $connection,
+                $config['database'] ?? '',
+                $config['prefix'] ?? '',
+                $config,
+            );
+        });
     }
 
     /**

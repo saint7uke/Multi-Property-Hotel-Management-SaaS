@@ -51,6 +51,8 @@ $env:DATABASE_URL="postgresql://production-connection-url"
 & "F:\Xampp 8\php\php.exe" artisan migrate --force
 ```
 
+If you are using Neon's pooled host, the app now detects the endpoint ID automatically from the host and appends the required Neon DSN option.
+
 After migrations, provision the staff users explicitly with a strong temporary password:
 
 ```powershell

@@ -8,6 +8,10 @@ $databaseUrl = env('DB_URL')
     ?: env('POSTGRES_URL')
     ?: env('DATABASE_POSTGRES_URL')
     ?: env('DATABASE_POSTGRES_URL_NON_POOLING');
+$databaseUrlHost = (string) parse_url((string) $databaseUrl, PHP_URL_HOST);
+$neonEndpointId = $databaseUrlHost !== '' && Str::contains($databaseUrlHost, '.neon.tech') && Str::contains($databaseUrlHost, '-pooler.')
+    ? Str::before($databaseUrlHost, '-pooler.')
+    : null;
 $defaultConnection = Str::startsWith((string) $databaseUrl, ['postgres://', 'postgresql://'])
     ? 'pgsql'
     : 'sqlite';
@@ -102,6 +106,7 @@ return [
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
+            'neon_endpoint' => $neonEndpointId,
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
