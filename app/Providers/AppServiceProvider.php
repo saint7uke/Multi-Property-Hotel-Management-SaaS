@@ -50,10 +50,12 @@ class AppServiceProvider extends ServiceProvider
         );
 
         View::composer('layouts.public', function ($view) {
-            $view->with('footerProperties', Property::query()
-                ->where('status', 'active')
-                ->orderBy('name')
-                ->get(['name', 'slug']));
+            $view->with('footerProperties', rescue(function () {
+                return Property::query()
+                    ->where('status', 'active')
+                    ->orderBy('name')
+                    ->get(['name', 'slug']);
+            }, collect()));
         });
 
         RateLimiter::for('api', function (Request $request) {

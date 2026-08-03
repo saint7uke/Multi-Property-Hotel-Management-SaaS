@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('public.home', [
-        'properties' => Property::query()->where('status', 'active')->orderBy('name')->get(),
-        'reviews' => Review::query()->with('guest', 'property', 'reservation')->where('status', 'approved')->latest()->take(6)->get(),
+        'properties' => rescue(function () {
+            return Property::query()->where('status', 'active')->orderBy('name')->get();
+        }, collect()),
+        'reviews' => rescue(function () {
+            return Review::query()->with('guest', 'property', 'reservation')->where('status', 'approved')->latest()->take(6)->get();
+        }, collect()),
     ]);
 })->name('home');
 
@@ -48,12 +52,16 @@ Route::view('/about', 'public.about')->name('about');
 Route::view('/blog', 'public.blog')->name('blog');
 Route::get('/contact', function () {
     return view('public.contact', [
-        'properties' => Property::query()->where('status', 'active')->orderBy('name')->get(),
+        'properties' => rescue(function () {
+            return Property::query()->where('status', 'active')->orderBy('name')->get();
+        }, collect()),
     ]);
 })->name('contact');
 Route::get('/book-now', function () {
     return view('public.book', [
-        'properties' => Property::query()->where('status', 'active')->orderBy('name')->get(),
+        'properties' => rescue(function () {
+            return Property::query()->where('status', 'active')->orderBy('name')->get();
+        }, collect()),
     ]);
 })->name('book.now');
 
