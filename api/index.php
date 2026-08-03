@@ -19,6 +19,8 @@ if (getenv('VERCEL')) {
         'APP_SERVICES_CACHE' => "$runtimePath/services.php",
         'VIEW_COMPILED_PATH' => "$runtimePath/views",
         'HOME' => '/tmp',
+        'LOG_CHANNEL' => 'stderr',
+        'LOG_STACK' => 'stderr',
     ];
 
     foreach ($runtimeEnvironment as $key => $value) {
