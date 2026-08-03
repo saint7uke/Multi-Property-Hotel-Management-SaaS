@@ -16,8 +16,10 @@ class StaffAuthenticationController extends Controller
 {
     public function create(Request $request): View|RedirectResponse
     {
-        if ($request->user() instanceof User) {
-            return redirect($request->user()->preferredPanelPath());
+        $user = rescue(fn () => $request->user(), null);
+
+        if ($user instanceof User && $user->status === 'active') {
+            return redirect($user->preferredPanelPath());
         }
 
         return view('auth.staff-sign-in');
@@ -37,7 +39,7 @@ class StaffAuthenticationController extends Controller
             $this->throwLoginException();
         }
 
-        $user = $request->user();
+        $user = rescue(fn () => Auth::guard('web')->user(), null);
 
         if (! $user instanceof User || $user->preferredPanelPath() === '/' || ! $user->can('dashboard.view')) {
             $this->recordAttempt($request, $user, 'auth.login_denied', $email);
@@ -56,15 +58,17 @@ class StaffAuthenticationController extends Controller
 
     private function recordAttempt(Request $request, ?User $user, string $action, string $email): void
     {
-        AuditLog::create([
-            'user_id' => $user?->id,
-            'action' => $action,
-            'subject_type' => $user ? User::class : null,
-            'subject_id' => $user?->id,
-            'changes' => ['email_hash' => hash('sha256', $email)],
-            'ip_address' => $request->ip(),
-            'user_agent' => (string) $request->userAgent(),
-        ]);
+        rescue(function () use ($request, $user, $action, $email): void {
+            AuditLog::create([
+                'user_id' => $user?->id,
+                'action' => $action,
+                'subject_type' => $user ? User::class : null,
+                'subject_id' => $user?->id,
+                'changes' => ['email_hash' => hash('sha256', $email)],
+                'ip_address' => $request->ip(),
+                'user_agent' => (string) $request->userAgent(),
+            ]);
+        });
     }
 
     private function throwLoginException(): never
