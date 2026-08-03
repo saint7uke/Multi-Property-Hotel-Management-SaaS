@@ -8,7 +8,7 @@ This repository deploys Laravel through a Vercel PHP community runtime and build
 - Root Directory: `./`
 - Install Command: leave the dashboard override disabled; `vercel.json` installs npm dependencies and the PHP runtime installs Composer dependencies
 - Build Command: leave the dashboard override disabled; `vercel.json` runs `npm run build`
-- Output Directory: leave empty
+- Output Directory: leave the dashboard override disabled; `vercel.json` publishes Laravel's `public` directory
 
 ## Required environment variables
 
