@@ -41,7 +41,7 @@ class StaffAuthenticationController extends Controller
 
         $user = rescue(fn () => Auth::guard('web')->user(), null);
 
-        if (! $user instanceof User || $user->preferredPanelPath() === '/' || ! $user->can('dashboard.view')) {
+        if (! $user instanceof User || $user->preferredPanelPath() === '/') {
             $this->recordAttempt($request, $user, 'auth.login_denied', $email);
             Auth::guard('web')->logout();
             $request->session()->invalidate();
@@ -50,7 +50,6 @@ class StaffAuthenticationController extends Controller
         }
 
         $request->session()->regenerate();
-        $user->forceFill(['last_login_at' => now()])->save();
         $this->recordAttempt($request, $user, 'auth.login_succeeded', $email);
 
         return redirect()->to($user->preferredPanelPath());
