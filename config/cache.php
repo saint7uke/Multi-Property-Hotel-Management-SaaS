@@ -17,6 +17,11 @@ return [
 
     'default' => env('CACHE_STORE', 'database'),
 
+    'limiter' => env(
+        'CACHE_LIMITER',
+        env('VERCEL') ? 'failover' : env('CACHE_STORE', 'database'),
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Cache Stores
