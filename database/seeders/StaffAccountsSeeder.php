@@ -13,8 +13,15 @@ class StaffAccountsSeeder extends Seeder
 {
     public function run(): void
     {
-        $password = (string) env('STAFF_SEED_PASSWORD', app()->environment('production') ? '' : 'password');
+        $this->seedAccounts(
+            password: (string) env('STAFF_SEED_PASSWORD', app()->environment('production') ? '' : 'password'),
+            propertySlug: (string) env('STAFF_SEED_PROPERTY_SLUG', 'ma-grand-manila'),
+            resetPasswords: filter_var(env('STAFF_SEED_RESET_PASSWORDS', false), FILTER_VALIDATE_BOOL),
+        );
+    }
 
+    public function seedAccounts(string $password, string $propertySlug, bool $resetPasswords = false): void
+    {
         if ($password === '') {
             throw new RuntimeException('Set STAFF_SEED_PASSWORD before seeding production staff accounts.');
         }
@@ -22,9 +29,6 @@ class StaffAccountsSeeder extends Seeder
         if (app()->environment('production') && strlen($password) < 12) {
             throw new RuntimeException('STAFF_SEED_PASSWORD must contain at least 12 characters in production.');
         }
-
-        $propertySlug = (string) env('STAFF_SEED_PROPERTY_SLUG', 'ma-grand-manila');
-        $resetPasswords = filter_var(env('STAFF_SEED_RESET_PASSWORDS', false), FILTER_VALIDATE_BOOL);
 
         DB::transaction(function () use ($password, $propertySlug, $resetPasswords): void {
             $this->call(RolesPermissionsSeeder::class);

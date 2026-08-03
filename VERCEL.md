@@ -51,7 +51,15 @@ $env:DATABASE_URL="postgresql://production-connection-url"
 & "F:\Xampp 8\php\php.exe" artisan migrate --force
 ```
 
-Review production users before running any seeder. Do not seed default passwords into a public deployment.
+After migrations, provision the staff users explicitly with a strong temporary password:
+
+```powershell
+$env:STAFF_SEED_PASSWORD="replace-with-a-long-temporary-password"
+$env:STAFF_SEED_PROPERTY_SLUG="ma-grand-manila"
+& "F:\Xampp 8\php\php.exe" artisan staff:provision --password="$env:STAFF_SEED_PASSWORD" --property-slug="$env:STAFF_SEED_PROPERTY_SLUG"
+```
+
+Use `STAFF_SEED_RESET_PASSWORDS=true` only when you intentionally want to reset existing demo staff passwords.
 
 ## Serverless limitations
 
