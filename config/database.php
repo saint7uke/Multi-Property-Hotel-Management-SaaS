@@ -11,6 +11,7 @@ $databaseUrl = env('DB_URL')
 $defaultConnection = Str::startsWith((string) $databaseUrl, ['postgres://', 'postgresql://'])
     ? 'pgsql'
     : 'sqlite';
+$postgresPort = parse_url((string) $databaseUrl, PHP_URL_PORT) ?: 5432;
 
 return [
 
@@ -97,7 +98,7 @@ return [
             'driver' => 'pgsql',
             'url' => $databaseUrl,
             'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
+            'port' => env('DB_PGSQL_PORT', $postgresPort),
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
