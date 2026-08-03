@@ -22,12 +22,9 @@ APP_DEBUG=false
 APP_URL=https://replace-with-project-domain.vercel.app
 LOG_CHANNEL=stderr
 
-DB_CONNECTION=mysql
-DB_HOST=replace-with-managed-database-host
-DB_PORT=3306
-DB_DATABASE=replace-with-database-name
-DB_USERNAME=replace-with-database-user
-DB_PASSWORD=replace-with-database-password
+DB_CONNECTION=pgsql
+DATABASE_URL=postgresql://replace-with-managed-database-connection-url
+DB_SSLMODE=require
 
 SESSION_DRIVER=database
 CACHE_STORE=database
@@ -46,13 +43,11 @@ Do not commit the generated key or production database credentials.
 
 ## Database setup
 
-Vercel Functions do not provide a persistent database. Create a managed MySQL database, add its credentials above, and run migrations from a trusted machine:
+Vercel Functions do not provide a persistent database. Connect a managed Postgres database, add its connection URL above, and run migrations from a trusted machine:
 
 ```powershell
-$env:DB_HOST="production-host"
-$env:DB_DATABASE="production-database"
-$env:DB_USERNAME="production-user"
-$env:DB_PASSWORD="production-password"
+$env:DB_CONNECTION="pgsql"
+$env:DATABASE_URL="postgresql://production-connection-url"
 & "F:\Xampp 8\php\php.exe" artisan migrate --force
 ```
 
