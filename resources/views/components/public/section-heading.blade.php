@@ -5,7 +5,7 @@
     'light' => false,
 ])
 
-<header {{ $attributes->class(['home-section-heading', 'home-section-heading--light' => $light]) }}>
+<header {{ $attributes->class(['home-section-heading min-w-0', 'home-section-heading--light' => $light]) }}>
     @if ($eyebrow)
         <p class="home-kicker">{{ $eyebrow }}</p>
     @endif

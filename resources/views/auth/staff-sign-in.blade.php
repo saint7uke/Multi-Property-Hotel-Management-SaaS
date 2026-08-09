@@ -8,7 +8,7 @@
     <x-brand.favicon />
     @vite(['resources/css/app.css', 'resources/js/staff-auth.ts'])
 </head>
-<body class="premium-auth" data-staff-auth>
+<body class="premium-auth" data-staff-auth data-responsive-shell>
     <img
         class="premium-auth__image"
         src="{{ asset('images/home/property-lobby.jpg') }}"
@@ -19,19 +19,19 @@
     >
     <div class="premium-auth__scrim" aria-hidden="true"></div>
 
-    <main class="premium-auth__shell">
+    <main class="premium-auth__shell min-w-0">
         <a class="premium-auth__brand" href="{{ route('home') }}" aria-label="M.A Group of Hotels home">
             <x-brand.logo class="premium-auth__brand-logo" />
         </a>
 
-        <section class="premium-auth__copy" data-auth-copy aria-labelledby="staff-welcome">
+        <section class="premium-auth__copy min-w-0" data-auth-copy aria-labelledby="staff-welcome">
             <p class="premium-kicker">Staff operations</p>
             <h1 id="staff-welcome">One secure entrance to your workspace.</h1>
             <p>Your account opens the correct hotel operations panel automatically, with access limited to your assigned role and property.</p>
             <span class="premium-auth__note">Authorized personnel only</span>
         </section>
 
-        <section class="premium-auth__form" data-auth-form aria-labelledby="sign-in-title">
+        <section class="premium-auth__form min-w-0" data-auth-form aria-labelledby="sign-in-title">
             <p class="premium-kicker">Secure staff access</p>
             <h2 id="sign-in-title">Sign in</h2>
             <p class="premium-auth__intro">Use the staff account issued by your system administrator or hotel manager.</p>

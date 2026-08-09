@@ -25,18 +25,20 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(LogoutResponse::class, StaffLogoutResponse::class);
 
-        DB::extend('pgsql', function (array $config, string $name): PostgresConnection {
-            $connector = new NeonPostgresConnector;
+        if (config('database.connections.pgsql.neon_endpoint')) {
+            DB::extend('pgsql', function (array $config, string $name): PostgresConnection {
+                $connector = new NeonPostgresConnector;
 
-            $connection = $connector->connect($config);
+                $connection = $connector->connect($config);
 
-            return new PostgresConnection(
-                $connection,
-                $config['database'] ?? '',
-                $config['prefix'] ?? '',
-                $config,
-            );
-        });
+                return new PostgresConnection(
+                    $connection,
+                    $config['database'] ?? '',
+                    $config['prefix'] ?? '',
+                    $config,
+                );
+            });
+        }
     }
 
     /**

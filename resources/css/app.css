@@ -6,6 +6,7 @@
 @import '@fontsource/poppins/500.css';
 @import '@fontsource/poppins/600.css';
 @import '@fontsource/poppins/700.css';
+@import './chat-widget.css';
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -2194,5 +2195,372 @@
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile safety layer ----------------------------------------------------- */
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+@media (max-width: 47.99rem) {
+    .public-site {
+        overflow-x: clip;
+    }
+
+    .ma-site-header__inner {
+        height: 4.5rem;
+        min-width: 0;
+        padding-inline: .875rem;
+    }
+
+    .ma-nav-brand {
+        min-width: 0;
+    }
+
+    .ma-mobile-menu-toggle {
+        min-height: 2.55rem;
+        padding-inline: .95rem;
+        font-size: .78rem;
+    }
+
+    #mobile-menu {
+        max-height: calc(100dvh - 4.5rem);
+        overflow-y: auto;
+    }
+
+    .home-hero,
+    .premium-hero,
+    .premium-hero--compact,
+    .hotel-hero {
+        min-height: 31rem;
+        height: auto;
+    }
+
+    .home-hero__inner,
+    .premium-hero__inner,
+    .hotel-hero__inner {
+        min-height: 31rem;
+        padding-block: 5rem 3.25rem;
+    }
+
+    .home-hero h1,
+    .premium-hero h1,
+    .hotel-hero__copy h1 {
+        max-width: 100%;
+        font-size: clamp(2.45rem, 12vw, 3.05rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+    }
+
+    .home-hero__copy > p:not(.home-kicker),
+    .premium-hero__copy > p:not(.premium-kicker),
+    .hotel-hero__copy > p:not(.home-kicker) {
+        max-width: 100%;
+        font-size: .98rem;
+        line-height: 1.6;
+    }
+
+    .home-hero__actions,
+    .premium-hero__actions,
+    .hotel-hero__actions {
+        width: 100%;
+    }
+
+    .home-button,
+    .premium-button {
+        width: 100%;
+        min-width: 0;
+        padding-inline: 1rem;
+        text-align: center;
+    }
+
+    .home-search {
+        display: grid;
+        grid-template-columns: 1fr;
+        border-radius: .5rem;
+    }
+
+    .home-search__intro,
+    .home-search__field,
+    .home-search__submit {
+        grid-column: 1 / -1;
+        border-right: 0;
+    }
+
+    .home-search__field input,
+    .home-search__field select,
+    .ma-input,
+    .premium-auth input,
+    .premium-page input,
+    .premium-page select,
+    .premium-page textarea,
+    .hotel-form input,
+    .hotel-form select,
+    .hotel-form textarea {
+        max-width: 100%;
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    .home-property-grid,
+    .hotel-overview__grid,
+    .hotel-booking__grid,
+    .hotel-status__grid,
+    .hotel-reviews__grid,
+    .premium-contact-strip,
+    .premium-heading-row {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-hero__facts {
+        position: static;
+        grid-template-columns: 1fr;
+        margin-top: -1px;
+    }
+
+    .hotel-hero__facts > div {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .hotel-gallery,
+    .hotel-room-grid,
+    .hotel-highlights,
+    .home-review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-room-gallery,
+    .home-review-grid {
+        max-width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+
+    .home-room,
+    .home-review,
+    .home-review-grid > .home-empty-state {
+        width: min(84vw, 22rem);
+        min-width: min(84vw, 22rem);
+    }
+
+    .ma-chat,
+    .hotel-assistant {
+        right: .75rem;
+        bottom: .75rem;
+        max-width: calc(100dvw - 1.5rem);
+    }
+}
+
+/* Cross-page responsive foundation -------------------------------------- */
+[data-responsive-shell],
+[data-responsive-shell] *,
+[data-responsive-shell] *::before,
+[data-responsive-shell] *::after {
+    box-sizing: border-box;
+}
+
+[data-responsive-shell],
+[data-responsive-shell] main,
+.responsive-page,
+.responsive-page > *,
+.responsive-page section,
+.responsive-page article,
+.responsive-page form,
+.responsive-page fieldset,
+.responsive-page label,
+.responsive-page figure,
+.responsive-page dl,
+.responsive-page div {
+    min-width: 0;
+}
+
+[data-responsive-shell] img,
+[data-responsive-shell] picture,
+[data-responsive-shell] video,
+[data-responsive-shell] canvas,
+[data-responsive-shell] iframe {
+    display: block;
+    max-width: 100%;
+}
+
+[data-responsive-shell] input,
+[data-responsive-shell] select,
+[data-responsive-shell] textarea,
+[data-responsive-shell] button {
+    max-width: 100%;
+}
+
+.responsive-page :where(h1, h2, h3, h4, p, li, dd, blockquote, a, button, label) {
+    overflow-wrap: anywhere;
+}
+
+.responsive-page :where(input, select, textarea) {
+    width: 100%;
+    min-width: 0;
+}
+
+.responsive-page :where(button, a, input, select, textarea, summary) {
+    touch-action: manipulation;
+}
+
+.responsive-scroll-region {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 63.99rem) {
+    .home-shell,
+    .premium-shell {
+        width: min(calc(100% - 2rem), 52rem);
+    }
+
+    .home-section,
+    .premium-section {
+        padding-block: clamp(4rem, 9vw, 5rem);
+    }
+
+    .home-heading-row,
+    .premium-heading-row {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .home-heading-row > *,
+    .premium-heading-row > * {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .premium-page :where(.lg\:sticky) {
+        position: static;
+    }
+}
+
+@media (max-width: 47.99rem) {
+    :root {
+        --mobile-gutter: clamp(.875rem, 4vw, 1.25rem);
+    }
+
+    .home-shell,
+    .premium-shell {
+        width: calc(100% - (var(--mobile-gutter) * 2));
+    }
+
+    .home-section,
+    .premium-section,
+    .premium-section--compact {
+        padding-block: clamp(3.5rem, 13vw, 4.5rem);
+    }
+
+    .home-section-heading h2,
+    .premium-section-heading h2 {
+        font-size: clamp(1.75rem, 8vw, 2.15rem);
+        line-height: 1.15;
+    }
+
+    .home-section-heading__copy,
+    .premium-section-heading > p:not(.premium-kicker) {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .premium-form,
+    .hotel-form {
+        padding: 1.25rem;
+    }
+
+    .premium-form.grid,
+    .hotel-form.grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .premium-form :where(.sm\:col-span-2, .md\:col-span-2),
+    .hotel-form :where(.sm\:col-span-2, .md\:col-span-2) {
+        grid-column: auto;
+    }
+
+    .responsive-page :where(input:not([type='checkbox']):not([type='radio']), select, textarea) {
+        min-height: 2.75rem;
+        font-size: 1rem;
+    }
+
+    .responsive-page :where(button, a.premium-button, a.home-button) {
+        min-height: 2.75rem;
+    }
+
+    .premium-hero__actions,
+    .home-hero__actions,
+    .hotel-hero__actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .premium-hero__actions > *,
+    .home-hero__actions > *,
+    .hotel-hero__actions > * {
+        width: 100%;
+    }
+
+    .premium-contact-strip dd,
+    footer :where(p, li, a) {
+        overflow-wrap: anywhere;
+    }
+
+    dialog.hotel-gallery-dialog {
+        width: calc(100dvw - 1rem);
+        height: calc(100dvh - 1rem);
+        padding: 3.25rem .75rem 1rem;
+    }
+}
+
+@media (max-width: 29.99rem) {
+    .home-hero h1,
+    .premium-hero h1,
+    .hotel-hero__copy h1 {
+        font-size: clamp(2rem, 11vw, 2.6rem);
+    }
+
+    .premium-form,
+    .hotel-form,
+    .premium-auth__form {
+        padding: 1rem;
+    }
+
+    .home-room,
+    .home-review,
+    .home-review-grid > .home-empty-state {
+        width: calc(100dvw - 2.5rem);
+        min-width: calc(100dvw - 2.5rem);
+    }
+}
+
+@media (max-height: 31rem) and (orientation: landscape) {
+    .home-hero,
+    .premium-hero,
+    .premium-hero--compact,
+    .hotel-hero,
+    .home-hero__inner,
+    .premium-hero__inner,
+    .hotel-hero__inner {
+        min-height: 28rem;
+    }
+
+    .premium-auth__shell {
+        padding-block: 5rem 1.5rem;
     }
 }

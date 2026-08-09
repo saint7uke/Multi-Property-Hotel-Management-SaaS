@@ -20,7 +20,7 @@
     >
     <div class="premium-hero__scrim" aria-hidden="true"></div>
     <div class="premium-shell premium-hero__inner">
-        <div class="premium-hero__copy" data-premium-hero-copy>
+        <div class="premium-hero__copy min-w-0" data-premium-hero-copy>
             @if ($eyebrow)
                 <p class="premium-kicker">{{ $eyebrow }}</p>
             @endif

@@ -4,7 +4,7 @@
 ])
 
 @section('content')
-<div class="premium-page">
+<div class="premium-page responsive-page">
     <x-public.page-hero
         eyebrow="Reservations"
         title="Booking Request"

@@ -1,7 +1,7 @@
 @guest
     @vite(['resources/css/hotel-assistant.css', 'resources/js/hotel-assistant.js'])
 
-    <section class="hotel-assistant" data-hotel-assistant aria-label="Virtual hotel assistant">
+    <section class="hotel-assistant" data-hotel-assistant data-responsive-widget aria-label="Virtual hotel assistant">
         <script type="application/json" data-assistant-config>@json([...$assistant, 'logoUrl' => asset('MALogo.png')])</script>
 
         <button
@@ -20,14 +20,14 @@
             </span>
         </button>
 
-        <div class="hotel-assistant__panel" id="hotel-assistant-panel" data-assistant-panel hidden>
+        <div class="hotel-assistant__panel" id="hotel-assistant-panel" data-assistant-panel role="dialog" aria-modal="false" aria-labelledby="hotel-assistant-title" hidden>
             <header class="hotel-assistant__header">
                 <div class="hotel-assistant__identity">
                     <span class="hotel-assistant__avatar" aria-hidden="true">
                         <img src="{{ asset('MALogo.png') }}" alt="" width="64" height="64">
                     </span>
                     <div>
-                        <h2>M.A Hotel Assistant</h2>
+                        <h2 id="hotel-assistant-title">M.A Hotel Assistant</h2>
                         <p><span aria-hidden="true"></span> Instant guest support</p>
                     </div>
                 </div>
