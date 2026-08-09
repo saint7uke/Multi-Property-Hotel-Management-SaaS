@@ -5,7 +5,7 @@
     'light' => false,
 ])
 
-<header {{ $attributes->class(['premium-section-heading', 'premium-section-heading--light' => $light]) }}>
+<header {{ $attributes->class(['premium-section-heading min-w-0', 'premium-section-heading--light' => $light]) }}>
     @if ($eyebrow)
         <p class="premium-kicker">{{ $eyebrow }}</p>
     @endif

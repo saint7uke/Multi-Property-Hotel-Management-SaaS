@@ -1,4 +1,4 @@
-<x-filament-panels::page>
+<x-filament-panels::page class="ma-responsive-report">
     <style>
         .ma-report-number { font-variant-numeric: tabular-nums; }
         .ma-report-kpi { min-height: 132px; }
@@ -16,7 +16,7 @@
         .ma-report-trend { display: flex; height: 170px; align-items: end; gap: .35rem; overflow-x: auto; padding-top: 1rem; }
         .ma-report-trend-item { display: flex; min-width: 1.75rem; flex: 1 0 1.75rem; height: 100%; flex-direction: column; justify-content: end; align-items: center; gap: .4rem; }
         .ma-report-trend-bar { width: 100%; max-width: 2.5rem; min-height: 2px; border-radius: .25rem .25rem 0 0; background: rgb(180 125 20); }
-        .ma-report-table-wrap { overflow-x: auto; }
+        .ma-report-table-wrap { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
         .ma-report-table { width: 100%; min-width: 720px; border-collapse: collapse; }
         .ma-report-table th { padding: .75rem 1rem; text-align: left; font-size: .75rem; font-weight: 600; color: rgb(100 116 139); }
         .ma-report-table td { border-top: 1px solid rgb(226 232 240); padding: .8rem 1rem; font-size: .875rem; }
@@ -24,6 +24,14 @@
         .dark .ma-report-table th { color: rgb(148 163 184); }
         .ma-report-badge { display: inline-flex; align-items: center; border-radius: .25rem; padding: .2rem .5rem; font-size: .75rem; font-weight: 600; background: rgb(241 245 249); color: rgb(51 65 85); }
         .dark .ma-report-badge { background: rgb(51 65 85); color: rgb(226 232 240); }
+        @media (max-width: 639px) {
+            .ma-responsive-report { min-width: 0; }
+            .ma-report-kpi { min-height: 0; }
+            .ma-report-kpi-value { font-size: clamp(1.35rem, 7vw, 1.75rem); overflow-wrap: anywhere; }
+            .ma-report-trend { height: 145px; padding-bottom: .35rem; }
+            .ma-report-table { min-width: 640px; }
+            .ma-report-table th, .ma-report-table td { padding: .65rem .75rem; white-space: nowrap; }
+        }
     </style>
 
     <x-filament::section compact>

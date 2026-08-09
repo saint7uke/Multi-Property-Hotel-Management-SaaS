@@ -4,7 +4,7 @@
     'featured' => false,
 ])
 
-<article {{ $attributes->class(['home-property group', 'home-property--featured' => $featured]) }}>
+<article {{ $attributes->class(['home-property group min-w-0', 'home-property--featured' => $featured]) }}>
     <a class="block" href="{{ route('hotels.show', $property) }}" aria-label="View {{ $property->name }}">
         <div class="home-property__media">
             <img

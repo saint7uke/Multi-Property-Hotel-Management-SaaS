@@ -18,7 +18,7 @@
 @endphp
 
 @section('content')
-<div class="premium-page hotel-premium" data-hotel-page>
+<div class="premium-page hotel-premium responsive-page" data-hotel-page>
     <section class="hotel-hero" aria-labelledby="hotel-title">
         <img
             class="hotel-hero__image"

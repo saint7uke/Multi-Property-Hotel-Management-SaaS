@@ -36,7 +36,7 @@
         ];
     @endphp
 
-<div class="premium-page">
+<div class="premium-page responsive-page">
     <x-public.page-hero
         eyebrow="Stories and guest guide"
         title="Stories & Guest Guide - Hotel Journal"
@@ -61,7 +61,7 @@
                 />
                 <form class="w-full max-w-sm" data-journal-search role="search">
                     <label class="ma-label" for="journal-search">Search journal</label>
-                    <div class="mt-2 flex gap-2">
+                    <div class="mt-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto]">
                         <input id="journal-search" class="ma-input" type="search" name="search" placeholder="Search posts">
                         <button class="premium-button premium-button--navy" type="submit">Search</button>
                     </div>

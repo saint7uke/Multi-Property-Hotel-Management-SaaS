@@ -2,6 +2,7 @@
 @import '@fontsource/poppins/500.css';
 @import '@fontsource/poppins/600.css';
 @import '@fontsource/poppins/700.css';
+@import '../../chat-widget.css';
 
 :root {
     --font-family: Poppins, Helvetica, Arial, sans-serif;
@@ -55,6 +56,81 @@
 
 .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
     border-inline-start: 3px solid #d4a24c;
+}
+
+.fi-body,
+.fi-layout,
+.fi-main,
+.fi-page,
+.fi-page-content,
+.fi-section,
+.fi-ta-ctn {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.fi-main {
+    overflow-x: clip;
+}
+
+.fi-ta-ctn,
+.fi-section-content,
+.fi-fo-component-ctn {
+    max-width: 100%;
+}
+
+.fi-ta-content,
+.fi-table-responsive,
+.ma-report-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 767px) {
+    .fi-main-ctn {
+        min-width: 0;
+    }
+
+    .fi-page-header-main-ctn,
+    .fi-header,
+    .fi-header-actions,
+    .fi-ac-actions {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .fi-header-actions,
+    .fi-ac-actions {
+        flex-wrap: wrap;
+    }
+
+    .fi-btn,
+    .fi-icon-btn,
+    .fi-input-wrp-input,
+    .fi-select-input,
+    .fi-ta-search-field input {
+        min-height: 2.75rem;
+    }
+
+    .fi-input-wrp-input,
+    .fi-select-input,
+    .fi-ta-search-field input,
+    .fi-fo-textarea textarea {
+        font-size: 1rem;
+    }
+
+    .fi-modal-window {
+        width: calc(100dvw - 1rem);
+        max-width: calc(100dvw - 1rem);
+        max-height: calc(100dvh - 1rem);
+    }
+
+    .ma-chat {
+        right: max(.5rem, env(safe-area-inset-right));
+        bottom: max(.5rem, env(safe-area-inset-bottom));
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -55,7 +55,7 @@
 @endphp
 
 @section('content')
-<div class="home-premium overflow-clip bg-[#f7f8fa] text-ma-ink" data-home-page>
+<div class="home-premium responsive-page overflow-clip bg-[#f7f8fa] text-ma-ink" data-home-page>
     <section class="home-hero" aria-labelledby="home-title">
         <img
             class="home-hero__image"

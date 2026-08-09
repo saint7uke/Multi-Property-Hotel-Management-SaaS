@@ -18,7 +18,7 @@ Hotel management and booking platform for M&A Grand Manila, M&A Skyline Cebu, an
 
 ## Local demo
 
-The current `.env` uses SQLite so the demo boots without creating a MySQL database first.
+The current `.env` uses local MySQL so you can manage the data in phpMyAdmin.
 
 ```powershell
 & "F:\Xampp 8\php\php.exe" -d extension=zip -d extension=gd artisan migrate:fresh --seed
@@ -30,6 +30,13 @@ Open:
 
 - Public site: `http://127.0.0.1:8000/`
 - Staff portal: `http://127.0.0.1:8000/staff`
+
+Local database tools:
+
+- phpMyAdmin: `http://localhost/phpmyadmin`
+- Database name: `ma_hotels`
+- MySQL user: `root`
+- MySQL password: blank unless you set one in XAMPP
 
 Seeded staff accounts all use password `password`:
 

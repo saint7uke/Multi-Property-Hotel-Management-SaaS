@@ -216,8 +216,8 @@
 .hotel-assistant__sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 
 @media (max-width: 640px) {
-    .hotel-assistant { right: .75rem; bottom: .75rem; }
-    .hotel-assistant__panel { position: fixed; right: 0; bottom: 0; left: 0; width: 100dvw; max-width: 100dvw; height: min(82dvh, 42rem); border-right: 0; border-bottom: 0; border-left: 0; border-radius: .5rem .5rem 0 0; }
+    .hotel-assistant { right: max(.75rem, env(safe-area-inset-right)); bottom: max(.75rem, env(safe-area-inset-bottom)); max-width: calc(100dvw - 1.5rem); }
+    .hotel-assistant__panel { position: fixed; right: 0; bottom: 0; left: 0; width: 100dvw; max-width: 100dvw; height: min(88dvh, 42rem); padding-bottom: env(safe-area-inset-bottom); border-right: 0; border-bottom: 0; border-left: 0; border-radius: .5rem .5rem 0 0; }
     .hotel-assistant__launcher-copy { display: none; }
     .hotel-assistant__launcher { min-height: 3.35rem; padding: .4rem; }
     .hotel-assistant__launcher-mark { width: 2.55rem; height: 2.55rem; }
@@ -225,6 +225,8 @@
 
 @media (max-width: 360px) {
     .hotel-assistant__suggestions > div { grid-template-columns: 1fr; }
+    .hotel-assistant__composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+    .hotel-assistant__composer input { min-width: 0; font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

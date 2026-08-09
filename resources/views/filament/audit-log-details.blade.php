@@ -1,4 +1,4 @@
-<div class="grid gap-5 text-sm">
+<div class="grid min-w-0 max-w-full gap-5 text-sm">
     <dl class="grid gap-4 sm:grid-cols-2">
         <div>
             <dt class="text-xs font-medium text-gray-500 dark:text-gray-400">Actor</dt>
@@ -23,7 +23,7 @@
 
     <div>
         <div class="text-xs font-medium text-gray-500 dark:text-gray-400">Recorded changes</div>
-        <pre class="mt-2 max-h-80 overflow-auto rounded-lg bg-gray-950 p-4 text-xs leading-6 text-gray-100">{{ json_encode($log->changes ?? [], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}</pre>
+        <pre class="mt-2 max-h-80 max-w-full overflow-auto whitespace-pre-wrap break-all rounded-lg bg-gray-950 p-4 text-xs leading-6 text-gray-100">{{ json_encode($log->changes ?? [], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) }}</pre>
     </div>
 
     <div>
